@@ -5,13 +5,23 @@ function handleError(error) {
   throw new Error(chalk.red(error));
 }
 
-function getFile(filePath) {
+async function getFile(filePath) {
   const encoding = "utf-8";
-  fs.promises
-    .readFile(filePath, encoding)
-    .then((text) => console.log(chalk.green(text)))
-    .catch((err) => handleError(err));
+  try {
+    const text = await fs.promises.readFile(filePath, encoding);
+    console.log(chalk.green(text));
+  } catch (err) {
+    handleError(err);
+  }
 }
+
+// function getFile(filePath) {
+//   const encoding = "utf-8";
+//   fs.promises
+//     .readFile(filePath, encoding)
+//     .then((text) => console.log(chalk.green(text)))
+//     .catch((err) => handleError(err));
+// }
 
 // function getFile(filePath) {
 //   const encoding = "utf-8";
