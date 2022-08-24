@@ -1,4 +1,4 @@
-import chalk from 'chalk'
+// import chalk from 'chalk'
 import fs from 'fs'
 
 function extractLinks(text) {
@@ -12,7 +12,7 @@ function extractLinks(text) {
 }
 
 function handleError(error) {
-  throw new Error(chalk.red(error))
+  throw new Error(error)
 }
 
 async function getFile(filePath) {
