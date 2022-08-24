@@ -8,7 +8,7 @@ function extractLinks(text) {
   while ((temp = regex.exec(text)) !== null) {
     resultArr.push({ [temp[1]]: temp[2] });
   }
-  return resultArr;
+  return resultArr.length === 0 ? "Não há links" : resultArr;
 }
 
 function handleError(error) {
@@ -19,10 +19,12 @@ async function getFile(filePath) {
   const encoding = "utf-8";
   try {
     const text = await fs.promises.readFile(filePath, encoding);
-    console.log(extractLinks(text));
+    return extractLinks(text);
   } catch (err) {
     handleError(err);
   }
 }
 
-getFile("./files/text1.md");
+// getFile("./files/text1.md");
+
+export default getFile;
